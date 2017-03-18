@@ -9,7 +9,7 @@ xy <- matrix(c(rep(u, each = m), rep(u, m)), ncol = 2)
 colnames(xy) <- c("x", "y")
 xy <- as_data_frame(xy)
 
-# evaluate the fused penalty on the grid, draw points with value <=1 only, and save a figure for each value of `a`
+# evaluate the penalty function on the grid, draw points with value <=1 only, and save a figure for each value of `a`
 a <- seq(0, 0.8, by = 0.1)
 for(i in 1:length(a)) {
   xy %>%
