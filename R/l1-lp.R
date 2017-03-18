@@ -3,7 +3,7 @@ library(ggplot2)
 library(magick)
 
 # generate an equidistant grid in the X-Y-plane
-u <- seq(-5, 5, by = 0.01)
+u <- seq(-2.5, 2.5, by = 0.01)
 m  <- length(u)
 xy <- matrix(c(rep(u, each = m), rep(u, m)), ncol = 2)
 colnames(xy) <- c("x", "y")
@@ -17,10 +17,10 @@ for(i in 1:length(p)) {
     mutate( Value = (abs(x) + abs(y)) - a * (abs(x)^p[i] + abs(y)^p[i])^(1/p[i]) ) %>%
     filter(abs(Value) <= 1) %>%
     ggplot(aes(x, y, color = Value)) + geom_point(pch = ".") +
-    annotate("text", x = -2.5, y = 2.5, parse = TRUE, size = 6,
+    annotate("text", x = -1.5, y = 1.5, parse = TRUE, size = 6,
              color = "blue", label = paste0("p == ", p[i])) +
     xlab(expression(beta[1])) + ylab(expression(beta[2])) +
-    xlim(-5, 5) + ylim(-5, 5) + scale_color_continuous(limits = c(0, 1)) +
+    xlim(-2.5, 2.5) + ylim(-2.5, 2.5) + scale_color_continuous(limits = c(0, 1)) +
     ggtitle(expression((group("|", beta[1], "|") + group("|", beta[2], "|")) - 0.6 * sqrt(group("|", beta[1], "|")^p + group("|", beta[2], "|")^p, 1/p) <= 1)) +
     theme_minimal()
   ggsave(paste0("../img/l1-lp_img/", sprintf("%03.0f", i), ".jpeg"),
