@@ -22,16 +22,16 @@ for(i in 1:length(a)) {
     ggtitle(expression(alpha*(group("|", beta[1], "|")+group("|", beta[2], "|"))+(1-alpha)*group("|", beta[1] - beta[2], "|")<=1)) +
     xlim(-2, 2) + ylim(-2, 2) +
     theme_minimal()
-  ggsave(paste0("./fused_img/", sprintf("%03.0f", i), ".jpeg"),
+  ggsave(paste0("../img/fused_img/", sprintf("%03.0f", i), ".jpeg"),
          width = 10, height = 8, units = "cm")
 }
 
 # make a GIF
-images <- paste0("./fused_img/", list.files(path = "./fused_img/", pattern = "jpeg"))
+images <- paste0("../img/fused_img/", list.files(path = "../img/fused_img/", pattern = "jpeg"))
 frames <- c()
 for (i in length(images):1) {
   x <- images[i] %>% image_read() %>% image_scale("500")
   frames <- c(x, frames)
 }
 animation <- image_animate(frames, fps = 2)
-image_write(animation, "fused_penalty_balls.gif")
+image_write(animation, "../gif/fused_penalty_balls.gif")

@@ -13,16 +13,16 @@ for(i in 1:length(p)) {
     xlab(expression(beta[1])) + ylab(expression(beta[2])) +
     ggtitle(expression(group("|", beta[1], "|")^p+group("|", beta[2], "|")^p==1)) +
     theme_minimal()
-  ggsave(paste0("./p-norm_img/", sprintf("%03.0f", i), ".jpeg"),
+  ggsave(paste0("../img/p-norm_img/", sprintf("%03.0f", i), ".jpeg"),
          width = 8, height = 8, units = "cm")
 }
 
 # make a GIF
-images <- paste0("./p-norm_img/", list.files(path = "./p-norm_img/", pattern = "jpeg"))
+images <- paste0("../img/p-norm_img/", list.files(path = "../img/p-norm_img/", pattern = "jpeg"))
 frames <- c()
 for (i in length(images):1) {
   x <- images[i] %>% image_read() %>% image_scale("400")
   frames <- c(x, frames)
 }
 animation <- image_animate(frames, fps = 2)
-image_write(animation, "p-norm_balls.gif")
+image_write(animation, "../gif/p-norm_balls.gif")
