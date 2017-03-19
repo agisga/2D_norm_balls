@@ -21,7 +21,7 @@ for(i in 1:length(p)) {
              color = "blue", label = paste0("p == ", p[i])) +
     xlab(expression(beta[1])) + ylab(expression(beta[2])) +
     xlim(-2.5, 2.5) + ylim(-2.5, 2.5) + scale_color_continuous(limits = c(0, 1)) +
-    ggtitle(expression((group("|", beta[1], "|") + group("|", beta[2], "|")) - 0.6 * sqrt(group("|", beta[1], "|")^p + group("|", beta[2], "|")^p, 1/p) <= 1)) +
+    ggtitle(expression((group("|", beta[1], "|") + group("|", beta[2], "|")) - 0.6 %.% sqrt(group("|", beta[1], "|")^p + group("|", beta[2], "|")^p, p) <= 1)) +
     theme_minimal()
   ggsave(paste0("../img/l1-lp_img/", sprintf("%03.0f", i), ".jpeg"),
          width = 10, height = 8, units = "cm")
